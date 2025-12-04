@@ -23,14 +23,29 @@
 
                 <a href="{{ route('home') }}" class="hover:text-blue-200 transition">Home</a>
                 <a href="{{ route('contact') }}" class="hover:text-blue-200 transition">Contact</a>
+                @guest
+                    <a href="{{ route('login') }}" class="hover:text-blue-200 transition">
+                        Login
+                    </a>
 
-                <a href="{{ route('login') }}" class="hover:text-blue-200 transition">
-                    Login
-                </a>
+                    <a href="{{ route('register') }}" class="hover:text-blue-200 transition">
+                        Register
+                    </a>
+                @endguest
 
-                <a href="{{ route('register') }}" class="hover:text-blue-200 transition">
-                    Register
-                </a>
+                @auth
+                    <a href="/dashboard" class="hover:text-blue-200 transition">
+                        Dashboard
+                    </a>
+
+                    <form action="/logout" method="POST" class="inline">
+                        @csrf
+                        <button class="hover:text-blue-200 transition">
+                            Logout
+                        </button>
+                    </form>
+                @endauth
+
 
             </nav>
 
